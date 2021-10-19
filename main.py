@@ -1,6 +1,10 @@
-import pandas as pd
-import random
+import Questions
 
-df = pd.read_excel("Stats Question.xlsx")
-print(df.loc[random.randint(0,40)])
+while True:
 
+    print("""
+          Hello and welcome to Study Buddy!
+          Please select what you want to do:
+          1. Answer 15 questions
+          2. 
+          """)
