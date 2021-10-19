@@ -22,15 +22,15 @@ class Questions:
         return self.__df.iloc[self.__random_question]["Answer"]
     
     def new_question(self):
-        self.used_quesitons.append(self.__random_question)
+        Questions.used_questions.append(self.__random_question)
         self.__random_question = random.randint(0,40)
         while True:
-            if self.used_questions.length == 40:
-                self.used_questions.clear
+            if len(Questions.used_questions) == 40:
+                Questions.used_questions.clear()
                 self.__random_question = random.randint
                 break
             
-            if self.__random_question not in self.used_questions:
+            if self.__random_question not in Questions.used_questions:
                 break
 
             self.__random_question = random.randint(0,40)
@@ -40,3 +40,6 @@ if __name__ == "__main__":
     test = Questions()
     print(test.get_questions())
     print(test.get_options())
+    test.new_question()
+    print(test.get_questions())
+    print(test.used_questions)
