@@ -1,6 +1,7 @@
 from operator import length_hint
 import pandas as pd
 import random
+from typing import List
 
 class Questions:
     
@@ -23,9 +24,9 @@ class Questions:
     
     def new_question(self):
         Questions.used_questions.append(self.__random_question)
-        self.__random_question = random.randint(0,40)
+        self.__random_question = random.randint(0,51)
         while True:
-            if len(Questions.used_questions) == 40:
+            if len(Questions.used_questions) == 51:
                 Questions.used_questions.clear()
                 self.__random_question = random.randint
                 break
@@ -33,7 +34,15 @@ class Questions:
             if self.__random_question not in Questions.used_questions:
                 break
 
-            self.__random_question = random.randint(0,40)
+            self.__random_question = random.randint(0,51)
+
+    @classmethod
+    def set_used_questions(questions):
+        Questions.used_questions = questions
+
+    @classmethod
+    def get_used_question():
+        return Questions.used_questions
 
         
 if __name__ == "__main__":
