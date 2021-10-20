@@ -16,9 +16,9 @@ while True:
         case 1:
             questions = Questions.Questions()
             with open('questions.json', 'r') as f:
-                uesd_q = json.load(f)
+                used_q = json.load(f)
 
-            Questions.used_questions = uesd_q["questions"]
+            Questions.Questions.set_used_questions(used_q["questions"])
 
             i = 1
             score = 0
@@ -39,10 +39,17 @@ while True:
                     print(f"\nYou are wrong. Correct answer is {questions.get_answer()}\nNext Question\n")
                 
                 i+=1
-                questions.new_question()  
+                questions.new_question()
+                print(Questions.Questions.get_used_question())
+
+            print(Questions.Questions.get_used_question())
+            temp = {"questions": Questions.Questions.get_used_question()}
 
             with open('questions.json', 'w') as f:
-                json.dump(Questions.used_questions, f)            
+                json.dump(temp, f) 
+
+
+            print(score)           
             break
         case 2:
             quit()

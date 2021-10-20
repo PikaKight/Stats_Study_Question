@@ -28,7 +28,7 @@ class Questions:
         while True:
             if len(Questions.used_questions) == len(self.__df):
                 Questions.used_questions.clear()
-                self.__random_question = random.randint
+                self.__random_question = random.randint(0,len(self.__df))
                 break
             
             if self.__random_question not in Questions.used_questions:
@@ -37,11 +37,11 @@ class Questions:
             self.__random_question = random.randint(0,len(self.__df))
 
     @classmethod
-    def set_used_questions(questions):
+    def set_used_questions(Questions, questions):
         Questions.used_questions = questions
 
     @classmethod
-    def get_used_question():
+    def get_used_question(Questions):
         return Questions.used_questions
 
         
@@ -51,4 +51,4 @@ if __name__ == "__main__":
     print(test.get_options())
     test.new_question()
     print(test.get_questions())
-    print(test.used_questions)
+    print(Questions.get_used_question())
