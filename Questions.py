@@ -9,7 +9,7 @@ class Questions:
 
     def __init__(self) -> None:
         self.__df = pd.read_excel("Stats Question.xlsx")
-        self.__random_question = random.randint(0,40)
+        self.__random_question = random.randint(0,len(self.__df))
 
     def get_questions(self):
         return self.__df["Question"].iloc[self.__random_question]
@@ -24,9 +24,9 @@ class Questions:
     
     def new_question(self):
         Questions.used_questions.append(self.__random_question)
-        self.__random_question = random.randint(0,51)
+        self.__random_question = random.randint(0,len(self.__df))
         while True:
-            if len(Questions.used_questions) == 51:
+            if len(Questions.used_questions) == len(self.__df):
                 Questions.used_questions.clear()
                 self.__random_question = random.randint
                 break
@@ -34,7 +34,7 @@ class Questions:
             if self.__random_question not in Questions.used_questions:
                 break
 
-            self.__random_question = random.randint(0,51)
+            self.__random_question = random.randint(0,len(self.__df))
 
     @classmethod
     def set_used_questions(questions):
